@@ -10,7 +10,7 @@ import (
 
 func main() {
 	// 1、与服务端建立连接
-	conn, err := net.Dial("tcp", "127.0.0.1:8888")
+	conn, err := net.Dial("tcp", "127.0.0.1:9090")
 	if err != nil {
 		fmt.Printf("conn server failed, err:%v\n", err)
 		return

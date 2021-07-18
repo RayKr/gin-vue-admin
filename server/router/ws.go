@@ -8,6 +8,7 @@ import (
 func InitWSRouter(Router *gin.RouterGroup) {
 	WSRouter := Router.Group("ws")
 	{
-		WSRouter.GET("echo", ws.EchoMessage) // echo demo
+		WSRouter.GET("echo", ws.EchoMessage)    // echo demo
+		WSRouter.GET("broadcast", ws.BroadCast) // broadcast
 	}
 }

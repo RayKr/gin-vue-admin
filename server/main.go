@@ -24,7 +24,8 @@ func main() {
 	global.GVA_DB = initialize.Gorm() // gorm连接数据库
 	initialize.Timer()
 
-	go initialize.Socket() // 新线程 初始化Socket
+	go initialize.Socket() // 初始化Socket
+	go initialize.WS()     // 初始化WebSocket
 
 	if global.GVA_DB != nil {
 		initialize.MysqlTables(global.GVA_DB) // 初始化表

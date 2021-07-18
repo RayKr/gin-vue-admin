@@ -20,6 +20,8 @@ type Server struct {
 	Excel      Excel      `mapstructure:"excel" json:"excel" yaml:"excel"`
 	Timer      Timer      `mapstructure:"timer" json:"timer" yaml:"timer"`
 
-	// Socket
+	// socket
 	Socket Socket `mapstructure:"socket" json:"socket" yaml:"socket"`
+	// websocket
+	WS WebSocket `mapstructure:"ws" json:"ws" yaml:"ws"`
 }

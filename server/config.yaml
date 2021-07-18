@@ -96,4 +96,7 @@ zap:
   log-in-console: true
 socket:
   start: true
-  addr: 127.0.0.1:8888
+  addr: 127.0.0.1:9090
+ws:
+  start: true
+  port: 2303

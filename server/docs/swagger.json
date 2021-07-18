@@ -529,6 +529,44 @@
                 }
             }
         },
+        "/autoCode/delSysHistory": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AutoCode"
+                ],
+                "summary": "删除回滚记录",
+                "parameters": [
+                    {
+                        "description": "删除回滚记录",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.AutoHistoryByID"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"删除成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/autoCode/getColumn": {
             "get": {
                 "security": [
@@ -573,6 +611,82 @@
                     "AutoCode"
                 ],
                 "summary": "获取当前所有数据库",
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/autoCode/getMeta": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AutoCode"
+                ],
+                "summary": "回滚",
+                "parameters": [
+                    {
+                        "description": "获取meta信息",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.AutoHistoryByID"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/autoCode/getSysHistory": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AutoCode"
+                ],
+                "summary": "查询回滚记录",
+                "parameters": [
+                    {
+                        "description": "查询回滚记录",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.SysAutoHistory"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
@@ -641,6 +755,44 @@
                 "responses": {
                     "200": {
                         "description": "{\"success\":true,\"data\":{},\"msg\":\"创建成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/autoCode/rollback": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AutoCode"
+                ],
+                "summary": "回滚",
+                "parameters": [
+                    {
+                        "description": "回滚自动生成代码",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.AutoHistoryByID"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"回滚成功\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -2753,6 +2905,9 @@
                 "accessKeySecret": {
                     "type": "string"
                 },
+                "basePath": {
+                    "type": "string"
+                },
                 "bucketName": {
                     "type": "string"
                 },
@@ -2790,6 +2945,9 @@
                 },
                 "serverService": {
                     "type": "string"
+                },
+                "transferRestart": {
+                    "type": "boolean"
                 },
                 "web": {
                     "type": "string"
@@ -2931,10 +3089,11 @@
                 },
                 "logMode": {
                     "description": "是否开启Gorm全局日志",
-                    "type": "boolean"
+                    "type": "string"
                 },
                 "logZap": {
-                    "type": "string"
+                    "description": "是否通过zap写入日志文件",
+                    "type": "boolean"
                 },
                 "maxIdleConns": {
                     "description": "空闲中的最大连接数",
@@ -3193,6 +3352,10 @@
                     "items": {
                         "$ref": "#/definitions/model.Field"
                     }
+                },
+                "humpPackageName": {
+                    "description": "go文件名称",
+                    "type": "string"
                 },
                 "packageName": {
                     "description": "文件名称",
@@ -3671,11 +3834,19 @@
         "model.SysUser": {
             "type": "object",
             "properties": {
+                "activeColor": {
+                    "description": "活跃颜色",
+                    "type": "string"
+                },
                 "authority": {
                     "$ref": "#/definitions/model.SysAuthority"
                 },
                 "authorityId": {
                     "description": "用户角色ID",
+                    "type": "string"
+                },
+                "baseColor": {
+                    "description": "基础颜色",
                     "type": "string"
                 },
                 "createdAt": {
@@ -3692,6 +3863,10 @@
                 },
                 "nickName": {
                     "description": "用户昵称",
+                    "type": "string"
+                },
+                "sideMode": {
+                    "description": "用户侧边主题",
                     "type": "string"
                 },
                 "updatedAt": {
@@ -3728,6 +3903,14 @@
                     "items": {
                         "$ref": "#/definitions/model.SysBaseMenu"
                     }
+                }
+            }
+        },
+        "request.AutoHistoryByID": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
                 }
             }
         },
@@ -3930,6 +4113,19 @@
                 "uuid": {
                     "description": "用户UUID",
                     "type": "string"
+                }
+            }
+        },
+        "request.SysAutoHistory": {
+            "type": "object",
+            "properties": {
+                "page": {
+                    "description": "页码",
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "description": "每页大小",
+                    "type": "integer"
                 }
             }
         },

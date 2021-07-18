@@ -6,6 +6,8 @@ definitions:
         type: string
       accessKeySecret:
         type: string
+      basePath:
+        type: string
       bucketName:
         type: string
       bucketUrl:
@@ -31,6 +33,8 @@ definitions:
         type: string
       serverService:
         type: string
+      transferRestart:
+        type: boolean
       web:
         type: string
       webApi:
@@ -129,9 +133,10 @@ definitions:
         type: string
       logMode:
         description: 是否开启Gorm全局日志
-        type: boolean
-      logZap:
         type: string
+      logZap:
+        description: 是否通过zap写入日志文件
+        type: boolean
       maxIdleConns:
         description: 空闲中的最大连接数
         type: integer
@@ -314,6 +319,9 @@ definitions:
         items:
           $ref: '#/definitions/model.Field'
         type: array
+      humpPackageName:
+        description: go文件名称
+        type: string
       packageName:
         description: 文件名称
         type: string
@@ -658,10 +666,16 @@ definitions:
     type: object
   model.SysUser:
     properties:
+      activeColor:
+        description: 活跃颜色
+        type: string
       authority:
         $ref: '#/definitions/model.SysAuthority'
       authorityId:
         description: 用户角色ID
+        type: string
+      baseColor:
+        description: 基础颜色
         type: string
       createdAt:
         description: 创建时间
@@ -674,6 +688,9 @@ definitions:
         type: integer
       nickName:
         description: 用户昵称
+        type: string
+      sideMode:
+        description: 用户侧边主题
         type: string
       updatedAt:
         description: 更新时间
@@ -699,6 +716,11 @@ definitions:
         items:
           $ref: '#/definitions/model.SysBaseMenu'
         type: array
+    type: object
+  request.AutoHistoryByID:
+    properties:
+      id:
+        type: integer
     type: object
   request.CasbinInReceive:
     properties:
@@ -841,6 +863,15 @@ definitions:
       uuid:
         description: 用户UUID
         type: string
+    type: object
+  request.SysAutoHistory:
+    properties:
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页大小
+        type: integer
     type: object
   request.SysDictionaryDetailSearch:
     properties:
@@ -1288,6 +1319,29 @@ paths:
       summary: 自动代码模板
       tags:
       - AutoCode
+  /autoCode/delSysHistory:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除回滚记录
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.AutoHistoryByID'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除回滚记录
+      tags:
+      - AutoCode
   /autoCode/getColumn:
     get:
       consumes:
@@ -1318,6 +1372,52 @@ paths:
       security:
       - ApiKeyAuth: []
       summary: 获取当前所有数据库
+      tags:
+      - AutoCode
+  /autoCode/getMeta:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 获取meta信息
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.AutoHistoryByID'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 回滚
+      tags:
+      - AutoCode
+  /autoCode/getSysHistory:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 查询回滚记录
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.SysAutoHistory'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 查询回滚记录
       tags:
       - AutoCode
   /autoCode/getTables:
@@ -1357,6 +1457,29 @@ paths:
       security:
       - ApiKeyAuth: []
       summary: 预览创建后的代码
+      tags:
+      - AutoCode
+  /autoCode/rollback:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 回滚自动生成代码
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.AutoHistoryByID'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"回滚成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 回滚
       tags:
       - AutoCode
   /base/captcha:

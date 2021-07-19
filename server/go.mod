@@ -57,6 +57,7 @@ require (
 	golang.org/x/tools v0.1.5 // indirect
 	google.golang.org/protobuf v1.24.0 // indirect
 	gopkg.in/ini.v1 v1.55.0 // indirect
+	gopkg.in/olahol/melody.v1 v1.0.0-20170518105555-d52139073376
 	gorm.io/driver/mysql v1.0.1
 	gorm.io/gorm v1.20.7
 )

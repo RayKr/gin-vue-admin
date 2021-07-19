@@ -8,9 +8,11 @@ import (
 func InitWSRouter(Router *gin.RouterGroup) {
 	WSRouter := Router.Group("ws")
 	{
-		WSRouter.GET("echo", ws.EchoMessage) // echo demo
-		// 弹幕功能
-		go ws.Broadcaster()
-		WSRouter.GET("danmaku", ws.Danmaku)
+		// echo demo
+		WSRouter.GET("echo", ws.EchoMessage)
+		// 广播功能
+		WSRouter.GET("broadcast", ws.Broadcast)
+		// 测试
+		WSRouter.GET("send", ws.Send)
 	}
 }

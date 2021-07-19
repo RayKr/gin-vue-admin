@@ -3,7 +3,17 @@ package ws
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/gorilla/websocket"
+	"net/http"
 )
+
+var upGrader = websocket.Upgrader{
+	ReadBufferSize:  1024,
+	WriteBufferSize: 1024,
+	CheckOrigin: func(r *http.Request) bool {
+		return true
+	},
+}
 
 func EchoMessage(c *gin.Context) {
 	//升级get请求为webSocket协议

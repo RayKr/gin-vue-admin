@@ -26,6 +26,7 @@ func main() {
 
 	go initialize.Socket() // 初始化Socket
 	go initialize.WS()     // 初始化WebSocket
+	go initialize.Serial() // 初始化串口监听
 
 	if global.GVA_DB != nil {
 		initialize.MysqlTables(global.GVA_DB) // 初始化表

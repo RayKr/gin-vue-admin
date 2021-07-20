@@ -46,6 +46,7 @@ require (
 	github.com/spf13/viper v1.7.0
 	github.com/swaggo/gin-swagger v1.2.0
 	github.com/swaggo/swag v1.7.0
+	github.com/tarm/serial v0.0.0-20180830185346-98f6abe2eb07
 	github.com/tebeka/strftime v0.1.3 // indirect
 	github.com/tencentyun/cos-go-sdk-v5 v0.7.19
 	github.com/unrolled/secure v1.0.7

@@ -24,4 +24,6 @@ type Server struct {
 	Socket Socket `mapstructure:"socket" json:"socket" yaml:"socket"`
 	// websocket
 	WS WebSocket `mapstructure:"ws" json:"ws" yaml:"ws"`
+	// 232Serial
+	Serial Serial `mapstructure:"serial" json:"serial" yaml:"serial"`
 }

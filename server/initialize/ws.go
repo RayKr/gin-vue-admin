@@ -1,8 +1,8 @@
 package initialize
 
 import (
-	"gin-vue-admin/global"
-	"gin-vue-admin/router"
+	"github.com/flipped-aurora/gin-vue-admin/server/global"
+	"github.com/flipped-aurora/gin-vue-admin/server/router"
 	"github.com/gin-gonic/gin"
 )
 

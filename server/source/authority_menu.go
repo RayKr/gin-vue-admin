@@ -1,8 +1,8 @@
 package source
 
 import (
-	"gin-vue-admin/global"
-	"gin-vue-admin/model"
+	"github.com/flipped-aurora/gin-vue-admin/server/global"
+	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
 	"github.com/gookit/color"
 )
 
@@ -13,7 +13,7 @@ type authorityMenu struct{}
 //@author: [SliverHorn](https://github.com/SliverHorn)
 //@description: authority_menu 视图数据初始化
 func (a *authorityMenu) Init() error {
-	if global.GVA_DB.Find(&[]model.SysMenu{}).RowsAffected > 0 {
+	if global.GVA_DB.Find(&[]system.SysMenu{}).RowsAffected > 0 {
 		color.Danger.Println("\n[Mysql] --> authority_menu 视图已存在!")
 		return nil
 	}

@@ -2,7 +2,7 @@ package initialize
 
 import (
 	"fmt"
-	"gin-vue-admin/global"
+	"github.com/flipped-aurora/gin-vue-admin/server/global"
 	"github.com/tarm/serial"
 	"log"
 	"time"

@@ -7,14 +7,14 @@ aliyun-oss:
   base-path: yourBasePath
 autocode:
   transfer-restart: true
-  root: E:\GoRepo\src\github.com\raykr\gin-vue-admin
+  root: /Users/jzl/go/src/github.com/raykr/gin-vue-admin
   server: /server
-  server-api: /api/v1
+  server-api: /api/v1/autocode
   server-initialize: /initialize
-  server-model: /model
-  server-request: /model/request/
-  server-router: /router
-  server-service: /service
+  server-model: /model/autocode
+  server-request: /model/autocode/request/
+  server-router: /router/autocode
+  server-service: /service/autocode
   web: /web/src
   web-api: /api
   web-form: /view
@@ -76,7 +76,7 @@ tencent-cos:
   secret-id: xxxxxxxx
   secret-key: xxxxxxxx
   base-url: https://gin.vue.admin
-  path-prefix: gin-vue-admin
+  path-prefix: github.com/flipped-aurora/gin-vue-admin/server
 timer:
   start: true
   spec: '@daily'
@@ -87,7 +87,7 @@ timer:
 zap:
   level: info
   format: console
-  prefix: '[GIN-VUE-ADMIN]'
+  prefix: '[github.com/flipped-aurora/gin-vue-admin/server]'
   director: log
   link-name: latest_log
   showLine: true
@@ -96,7 +96,7 @@ zap:
   log-in-console: true
 socket:
   start: true
-  addr: 127.0.0.1:9090
+  addr: 127.0.0.1:9099
 ws:
   start: true
   port: 2303

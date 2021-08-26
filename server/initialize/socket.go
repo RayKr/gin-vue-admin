@@ -3,7 +3,7 @@ package initialize
 import (
 	"bufio"
 	"fmt"
-	"gin-vue-admin/global"
+	"github.com/flipped-aurora/gin-vue-admin/server/global"
 	"net"
 )
 

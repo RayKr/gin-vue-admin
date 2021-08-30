@@ -31,9 +31,7 @@
         </el-menu>
       </div>
       <div class="header-login">
-        <span class="header-location"
-        ><i class="el-icon-location-information"></i>山东</span
-        >
+        <span class="header-location"><i class="el-icon-location-information"></i>山东</span>
         <el-button type="primary" size="mini">登录</el-button>
         <el-button size="mini">注册</el-button>
       </div>
@@ -142,6 +140,6 @@ export default {
 }
 
 .el-menu.el-menu--horizontal {
-   border-bottom: none !important;
+  border-bottom: none !important;
 }
 </style>

@@ -8,7 +8,8 @@
 
 <style>
 body {
-  margin: 0;
+  margin: 0 auto;
+  max-width: 1280px;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
